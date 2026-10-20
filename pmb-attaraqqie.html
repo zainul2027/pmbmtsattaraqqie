@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMB MTs ATTARAQQIE 2027-2028</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<style>
+:root{--navy:#0b1f5c;--blue:#2563eb;--sky:#7dd3fc;--pink:#f472b6;--gold:#f5c542;--ink:#1e2547;--bg:#f4f6fd}
+*{box-sizing:border-box;margin:0}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{color:inherit}
+header.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 22px;background:rgba(11,31,92,.82);backdrop-filter:blur(8px);color:#fff}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;margin-right:auto;cursor:pointer}
+.brand img{height:38px;width:38px;object-fit:contain;border-radius:50%;background:#fff}
+.nav button{background:none;border:0;color:#fff;font:500 14px Poppins;padding:8px 12px;border-radius:20px;cursor:pointer}
+.nav button:hover,.nav button.on{background:rgba(255,255,255,.18)}
+.hero{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;padding:100px 20px 60px;color:#fff;overflow:hidden;background:linear-gradient(135deg,#0b1f5c 0%,#1d4ed8 38%,#7dd3fc 70%,#f9a8d4 100%)}
+.slides{position:absolute;inset:0}
+.slides .s{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s}
+.slides .s.on{opacity:.38}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,92,.35),rgba(11,31,92,.1) 50%,rgba(244,114,182,.25))}
+.hero .in{position:relative;max-width:860px}
+.hero h2{font-weight:500;font-size:clamp(20px,3.4vw,32px);color:#fff}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5.2vw,54px);line-height:1.2;color:var(--gold);margin:8px 0 28px;text-shadow:0 3px 18px rgba(0,0,0,.35)}
+.cta{background:var(--gold);color:var(--navy);border:0;font:700 17px Poppins;padding:16px 42px;border-radius:40px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .15s}
+.cta:hover{transform:translateY(-3px)}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,.25);border:0;color:#fff;font-size:26px;width:44px;height:44px;border-radius:50%;cursor:pointer}
+.arrow.l{left:14px}.arrow.r{right:14px}
+.dots{position:absolute;bottom:22px;left:0;right:0;display:flex;gap:8px;justify-content:center;z-index:3}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}.dots i.on{background:var(--gold)}
+.cap{position:absolute;bottom:48px;left:0;right:0;z-index:3;font-size:14px;color:#fff;text-shadow:0 1px 6px #000}
+section.page{max-width:1000px;margin:0 auto;padding:40px 20px}
+.card{background:#fff;border-radius:18px;padding:26px;box-shadow:0 6px 24px rgba(11,31,92,.09);margin-bottom:22px}
+.card h3{color:var(--navy);margin-bottom:12px;font-size:20px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;max-width:1000px;margin:0 auto;padding:44px 20px}
+.info ul{padding-left:20px}.info li{margin:6px 0}
+.top{padding-top:90px}
+fieldset{border:0;margin-bottom:22px}
+legend{font-weight:700;color:var(--navy);font-size:17px;padding:6px 14px;background:linear-gradient(90deg,#dbeafe,#fce7f3);border-radius:10px;width:100%;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+label{font-size:13px;font-weight:500;display:block}
+label b{color:#e11d48}
+input,select,textarea{width:100%;font:400 14px Poppins;padding:10px 12px;border:1.5px solid #cbd5e1;border-radius:10px;margin-top:4px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:3px solid #bfdbfe;border-color:var(--blue)}
+.err{border-color:#e11d48!important;background:#fff1f2}
+.btn{background:var(--blue);color:#fff;border:0;font:600 14px Poppins;padding:11px 22px;border-radius:10px;cursor:pointer}
+.btn.gold{background:var(--gold);color:var(--navy)}.btn.red{background:#e11d48}.btn.gray{background:#64748b}.btn.sm{padding:6px 12px;font-size:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.modal{position:fixed;inset:0;background:rgba(11,31,92,.6);display:none;place-items:center;z-index:50;padding:18px}
+.modal.on{display:grid}
+.box{background:#fff;border-radius:18px;padding:28px;max-width:430px;width:100%;text-align:center}
+.box h3{margin-bottom:8px;color:var(--navy)}.box .row{justify-content:center;margin-top:18px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tabs button{border:0;background:#e0e7ff;padding:9px 16px;border-radius:20px;font:500 13px Poppins;cursor:pointer}
+.tabs button.on{background:var(--navy);color:#fff}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:left;white-space:nowrap}
+th{background:#eef2ff;color:var(--navy)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.thumbs div{background:#f1f5f9;border-radius:12px;padding:8px;font-size:12px}
+.thumbs img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+.ok{text-align:center}.ok .no{font:700 30px 'Playfair Display';color:var(--navy);background:#fef3c7;display:inline-block;padding:10px 26px;border-radius:14px;margin:12px 0}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 22px;border-radius:30px;z-index:99;display:none}
+footer{text-align:center;padding:26px;font-size:13px;color:#64748b}
+.hide{display:none!important}
+@media(max-width:700px){header.nav{flex-wrap:wrap;padding:8px}.nav button{padding:6px 9px;font-size:12px}.brand span{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="brand" onclick="go('home')"><img id="logoNav" alt="Logo"><span>MTs ATTARAQQIE</span></div>
+  <button data-v="home" onclick="go('home')">Beranda</button>
+  <button onclick="go('home','info')">Persyaratan &amp; Biaya</button>
+  <button data-v="daftar" onclick="go('daftar')">Daftar</button>
+  <button data-v="admin" onclick="go('admin')">Admin</button>
+</header>
+
+<!-- BERANDA -->
+<main id="v-home">
+  <div class="hero">
+    <div class="slides" id="slides"></div><div class="shade"></div>
+    <button class="arrow l" onclick="slide(-1)" aria-label="Sebelumnya">‹</button>
+    <button class="arrow r" onclick="slide(1)" aria-label="Berikutnya">›</button>
+    <div class="in">
+      <h2>Selamat Datang di</h2>
+      <h1>Sistem Penerimaan Murid Baru<br>MTs ATTARAQQIE<br>Tahun Pelajaran 2027-2028</h1>
+      <button class="cta" onclick="go('daftar')">DAFTAR SEKARANG</button>
+    </div>
+    <div class="cap" id="cap"></div><div class="dots" id="dots"></div>
+  </div>
+  <div class="info" id="info">
+    <div class="card"><h3>📋 Persyaratan</h3><ul id="syaratList"></ul></div>
+    <div class="card"><h3>💰 Biaya-biaya</h3><ul id="biayaList"></ul></div>
+  </div>
+</main>
+
+<!-- FORMULIR -->
+<main id="v-daftar" class="hide top"><section class="page">
+  <div class="card" id="formWrap">
+    <h3>Formulir Pendaftaran Murid Baru (Format EMIS Kemenag)</h3>
+    <p style="font-size:13px;margin-bottom:18px">Isi semua data bertanda <b style="color:#e11d48">*</b> sesuai Kartu Keluarga dan Akta Kelahiran.</p>
+    <form id="form" novalidate></form>
+    <div class="row" style="margin-top:12px"><button class="btn gold" onclick="askSubmit()">Selesai &amp; Kirim Pendaftaran</button></div>
+  </div>
+  <div class="card ok hide" id="okWrap">
+    <h3>✅ Pendaftaran Berhasil</h3>
+    <p>Nomor pendaftaran Anda:</p><div class="no" id="okNo"></div>
+    <p style="margin-bottom:16px">Simpan bukti pendaftaran dan serahkan saat daftar ulang.</p>
+    <div class="row" style="justify-content:center"><button class="btn" onclick="buktiPDF(lastReg)">⬇ Download Bukti Pendaftaran (PDF)</button><button class="btn gray" onclick="newReg()">Daftar Siswa Lain</button></div>
+  </div>
+</section></main>
+
+<!-- ADMIN -->
+<main id="v-admin" class="hide top"><section class="page" id="adminRoot"></section></main>
+
+<footer>© 2027 MTs ATTARAQQIE — Sistem Penerimaan Murid Baru</footer>
+
+<div class="modal" id="confirmM"><div class="box"><h3>Konfirmasi</h3><p>Apakah sudah yakin mengisi data siswa dengan benar?</p>
+  <div class="row"><button class="btn gray" onclick="closeM()">Periksa Lagi</button><button class="btn gold" onclick="submitReg()">Ya, Saya Yakin</button></div></div></div>
+<div id="toast"></div>
+
+<script>
+/* ===== Penyimpanan (IndexedDB, tersimpan di browser) ===== */
+const DB={db:null,
+  open(){return new Promise((ok,no)=>{const r=indexedDB.open('pmb-attaraqqie',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>{this.db=r.result;ok()};r.onerror=()=>no(r.error)})},
+  get(k,d){return new Promise(ok=>{const q=this.db.transaction('kv').objectStore('kv').get(k);q.onsuccess=()=>ok(q.result===undefined?d:q.result);q.onerror=()=>ok(d)})},
+  set(k,v){return new Promise(ok=>{const t=this.db.transaction('kv','readwrite');t.objectStore('kv').put(v,k);t.oncomplete=ok})}
+};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',2800)}
+let S,GAL,STU,authed=false,lastReg=null;
+
+/* ===== Definisi formulir EMIS ===== */
+const AGAMA=['Islam','Kristen','Katolik','Hindu','Buddha','Konghucu'];
+const PEND=['Tidak Sekolah','SD/MI','SMP/MTs','SMA/MA/SMK','D1/D2/D3','S1','S2','S3'];
+const KERJA=['PNS/TNI/Polri','Karyawan Swasta','Wiraswasta','Pedagang','Petani/Peternak','Nelayan','Buruh','Guru/Dosen','Tenaga Kesehatan','Pensiunan','Tidak Bekerja','Lainnya'];
+const HASIL=['Kurang dari Rp 500.000','Rp 500.000 - Rp 999.999','Rp 1.000.000 - Rp 1.999.999','Rp 2.000.000 - Rp 4.999.999','Rp 5.000.000 - Rp 20.000.000','Lebih dari Rp 20.000.000','Tidak Berpenghasilan'];
+const HIDUP=['Masih Hidup','Meninggal Dunia','Tidak Diketahui'];
+const F=[
+['A. Data Pribadi Siswa','nama','Nama Lengkap'],['A. Data Pribadi Siswa','nisn','NISN (10 digit)','text'],['A. Data Pribadi Siswa','nik','NIK Siswa (16 digit)','text'],
+['A. Data Pribadi Siswa','kk','No. Kartu Keluarga (16 digit)','text'],['A. Data Pribadi Siswa','akta','No. Registrasi Akta Lahir','text'],['A. Data Pribadi Siswa','tmplahir','Tempat Lahir'],
+['A. Data Pribadi Siswa','tgllahir','Tanggal Lahir','date'],['A. Data Pribadi Siswa','jk','Jenis Kelamin','select',['Laki-laki','Perempuan']],['A. Data Pribadi Siswa','agama','Agama','select',AGAMA],
+['A. Data Pribadi Siswa','wn','Kewarganegaraan','select',['WNI','WNA']],['A. Data Pribadi Siswa','anakke','Anak Ke-','number'],['A. Data Pribadi Siswa','saudara','Jumlah Saudara Kandung','number'],
+['A. Data Pribadi Siswa','tinggi','Tinggi Badan (cm)','number'],['A. Data Pribadi Siswa','berat','Berat Badan (kg)','number'],['A. Data Pribadi Siswa','cita','Cita-cita'],['A. Data Pribadi Siswa','hobi','Hobi'],
+['A. Data Pribadi Siswa','kebkhusus','Kebutuhan Khusus','select',['Tidak Ada','Tuna Netra','Tuna Rungu','Tuna Daksa','Tuna Grahita','Lainnya']],
+['B. Alamat & Kontak','alamat','Alamat Jalan/Dusun'],['B. Alamat & Kontak','rt','RT','number'],['B. Alamat & Kontak','rw','RW','number'],['B. Alamat & Kontak','desa','Desa/Kelurahan'],
+['B. Alamat & Kontak','kec','Kecamatan'],['B. Alamat & Kontak','kab','Kabupaten/Kota'],['B. Alamat & Kontak','prov','Provinsi'],['B. Alamat & Kontak','pos','Kode Pos','number'],
+['B. Alamat & Kontak','tinggal','Tempat Tinggal','select',['Bersama Orang Tua','Bersama Wali','Kos','Asrama','Panti Asuhan','Pesantren','Lainnya']],
+['B. Alamat & Kontak','transport','Alat Transportasi ke Madrasah','select',['Jalan Kaki','Sepeda','Sepeda Motor','Mobil Pribadi','Angkutan Umum','Antar Jemput','Lainnya']],
+['B. Alamat & Kontak','jarak','Jarak Rumah ke Madrasah (km)','number'],['B. Alamat & Kontak','waktu','Waktu Tempuh (menit)','number'],['B. Alamat & Kontak','hp','No. HP/WhatsApp','tel'],['B. Alamat & Kontak','email','Email','email'],
+['C. Sekolah Asal','asal','Nama SD/MI Asal'],['C. Sekolah Asal','npsn','NPSN Sekolah Asal','text'],['C. Sekolah Asal','thlulus','Tahun Lulus','number'],['C. Sekolah Asal','noijazah','No. Ijazah/SKL','text'],
+['C. Sekolah Asal','kip','No. KIP/PKH/KKS (jika ada)','text',null,1],['C. Sekolah Asal','prestasi','Prestasi yang Pernah Diraih (jika ada)','text',null,1]
+];
+[['ayah','D. Data Ayah Kandung','Ayah'],['ibu','E. Data Ibu Kandung','Ibu'],['wali','F. Data Wali (isi bila ada, boleh kosong)','Wali']].forEach(([p,g,n])=>{
+  const o=p==='wali'?1:0;
+  F.push([g,p+'_nama','Nama '+n,'text',null,o],[g,p+'_nik','NIK '+n+' (16 digit)','text',null,o],[g,p+'_tmp','Tempat Lahir '+n,'text',null,o],[g,p+'_tgl','Tanggal Lahir '+n,'date',null,o],
+    [g,p+'_pend','Pendidikan '+n,'select',PEND,o],[g,p+'_kerja','Pekerjaan '+n,'select',KERJA,o],[g,p+'_hasil','Penghasilan '+n,'select',HASIL,o]);
+  if(p!=='wali')F.push([g,p+'_hidup','Status '+n,'select',HIDUP],[g,p+'_hp','No. HP '+n,'tel']);
+});
+const LEN={nisn:10,nik:16,kk:16,ayah_nik:16,ibu_nik:16,wali_nik:16};
+
+function buildForm(){
+  let h='',g='';
+  F.forEach(([grp,k,lab,t='text',opt,o])=>{
+    if(grp!==g){if(g)h+='</div></fieldset>';h+=`<fieldset><legend>${grp}</legend><div class="grid">`;g=grp}
+    const req=o?'':' <b>*</b>';
+    const inp=t==='select'?`<select id="f_${k}"><option value="">-- Pilih --</option>${opt.map(x=>`<option>${esc(x)}</option>`).join('')}</select>`
+      :`<input id="f_${k}" type="${t}" ${t==='number'?'min="0"':''} ${LEN[k]?`maxlength="${LEN[k]}" inputmode="numeric"`:''}>`;
+    h+=`<label>${lab}${req}${inp}</label>`;
+  });
+  $('#form').innerHTML=h+'</div></fieldset>';
+}
+function validate(){
+  let bad=null;const d={};
+  F.forEach(([,k,lab,t,,o])=>{
+    const el=$('#f_'+k);const v=el.value.trim();d[k]=v;el.classList.remove('err');
+    let wrong=(!o&&!v);
+    if(v&&LEN[k]&&!new RegExp('^\\d{'+LEN[k]+'}$').test(v))wrong=true;
+    if(v&&t==='tel'&&!/^\d{9,15}$/.test(v))wrong=true;
+    if(v&&t==='email'&&!/^\S+@\S+\.\S+$/.test(v))wrong=true;
+    if(wrong){el.classList.add('err');bad=bad||{el,lab}}
+  });
+  return bad?{bad}:{d};
+}
+function askSubmit(){
+  const r=validate();
+  if(r.bad){r.bad.el.scrollIntoView({behavior:'smooth',block:'center'});r.bad.el.focus();toast('Periksa isian: '+r.bad.lab);return}
+  $('#confirmM').classList.add('on');
+}
+const closeM=()=>$('#confirmM').classList.remove('on');
+async function submitReg(){
+  closeM();const r=validate();if(r.bad)return;
+  const n=(S.counter||0)+1;S.counter=n;
+  const rec={...r.d,noreg:'PMB-2027-'+String(n).padStart(4,'0'),tgl:new Date().toLocaleString('id-ID')};
+  STU.push(rec);await DB.set('stu',STU);await DB.set('settings',S);
+  lastReg=rec;$('#okNo').textContent=rec.noreg;$('#formWrap').classList.add('hide');$('#okWrap').classList.remove('hide');scrollTo(0,0);
+}
+function newReg(){$('#form').reset();$('#okWrap').classList.add('hide');$('#formWrap').classList.remove('hide');scrollTo(0,0)}
+
+/* ===== PDF bukti & ekspor ===== */
+function buktiPDF(s){
+  const {jsPDF}=window.jspdf;const d=new jsPDF();
+  let y=16;
+  if(S.logo){try{d.addImage(S.logo,'JPEG',14,10,22,22)}catch(e){}}
+  d.setFontSize(15);d.setFont(undefined,'bold');d.text('BUKTI PENDAFTARAN MURID BARU',112,17,{align:'center'});
+  d.setFontSize(12);d.text('MTs ATTARAQQIE - Tahun Pelajaran 2027-2028',112,24,{align:'center'});
+  d.line(14,36,196,36);
+  d.setFontSize(18);d.text('No. Pendaftaran: '+s.noreg,105,48,{align:'center'});
+  const rows=[['Nama Lengkap',s.nama],['NISN',s.nisn],['NIK',s.nik],['Tempat, Tgl Lahir',s.tmplahir+', '+s.tgllahir],['Jenis Kelamin',s.jk],['Agama',s.agama],
+    ['Alamat',`${s.alamat} RT ${s.rt}/RW ${s.rw}, ${s.desa}, ${s.kec}, ${s.kab}, ${s.prov}`],['Sekolah Asal',s.asal],['Nama Ayah',s.ayah_nama],['Nama Ibu',s.ibu_nama],['No. HP',s.hp],['Tanggal Daftar',s.tgl]];
+  d.autoTable({startY:56,body:rows,theme:'grid',styles:{fontSize:10},columnStyles:{0:{fontStyle:'bold',cellWidth:48,fillColor:[238,242,255]}}});
+  const fy=d.lastAutoTable.finalY+14;
+  d.setFontSize(10);d.setFont(undefined,'normal');
+  d.text('Bukti ini wajib dibawa saat daftar ulang bersama berkas persyaratan.',14,fy);
+  d.text('Panitia PMB',160,fy+14,{align:'center'});d.text('(_______________)',160,fy+36,{align:'center'});
+  d.save('Bukti-Pendaftaran-'+s.noreg+'.pdf');
+}
+const exRows=()=>STU.map((s,i)=>({No:i+1,'No. Pendaftaran':s.noreg,'Tanggal Daftar':s.tgl,...Object.fromEntries(F.map(f=>[f[2],s[f[1]]||'']))}));
+function exportXLSX(){if(!STU.length)return toast('Belum ada data');const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(exRows()),'Data Siswa');XLSX.writeFile(wb,'Data-PMB-2027-2028.xlsx')}
+function exportDOC(){
+  if(!STU.length)return toast('Belum ada data');const r=exRows(),h=Object.keys(r[0]);
+  const html=`<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><style>table{border-collapse:collapse}td,th{border:1px solid #000;padding:3px;font-size:9pt}</style></head><body><h2>Data Pendaftar PMB MTs ATTARAQQIE 2027-2028</h2><table><tr>${h.map(x=>`<th>${esc(x)}</th>`).join('')}</tr>${r.map(o=>`<tr>${h.map(x=>`<td>${esc(o[x])}</td>`).join('')}</tr>`).join('')}</table></body></html>`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff',html],{type:'application/msword'}));a.download='Data-PMB-2027-2028.doc';a.click();
+}
+function exportPDF(){
+  if(!STU.length)return toast('Belum ada data');const {jsPDF}=window.jspdf;const d=new jsPDF({orientation:'landscape'});
+  d.setFontSize(13);d.text('Data Pendaftar PMB MTs ATTARAQQIE Tahun Pelajaran 2027-2028',14,14);
+  d.autoTable({startY:20,styles:{fontSize:8},headStyles:{fillColor:[11,31,92]},
+    head:[['No','No. Daftar','Nama','NISN','NIK','JK','TTL','Asal Sekolah','Ayah','Ibu','No. HP']],
+    body:STU.map((s,i)=>[i+1,s.noreg,s.nama,s.nisn,s.nik,s.jk,s.tmplahir+', '+s.tgllahir,s.asal,s.ayah_nama,s.ibu_nama,s.hp])});
+  d.save('Data-PMB-2027-2028.pdf');
+}
+
+/* ===== Slider & konten beranda ===== */
+let si=0,timer;
+function renderSlides(){
+  const g=GAL;$('#slides').innerHTML=g.map((x,i)=>`<div class="s${i===0?' on':''}" style="background-image:url('${x.src}')"></div>`).join('');
+  $('#dots').innerHTML=g.map((_,i)=>`<i onclick="show(${i})"></i>`).join('');si=0;show(0);clearInterval(timer);
+  if(g.length>1)timer=setInterval(()=>slide(1),5500);
+}
+function show(i){const n=GAL.length;if(!n){$('#cap').textContent='';return}si=(i+n)%n;
+  document.querySelectorAll('.slides .s').forEach((e,k)=>e.classList.toggle('on',k===si));
+  document.querySelectorAll('.dots i').forEach((e,k)=>e.classList.toggle('on',k===si));$('#cap').textContent=GAL[si].cap||''}
+const slide=d=>show(si+d);
+function renderInfo(){
+  const li=t=>t.split('\n').filter(x=>x.trim()).map(x=>`<li>${esc(x.replace(/^[-•\d.\s]+/,''))}</li>`).join('')||'<li>Belum ada informasi.</li>';
+  $('#syaratList').innerHTML=li(S.syarat);$('#biayaList').innerHTML=li(S.biaya);
+  $('#logoNav').src=S.logo||'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#f5c542"/><text x="20" y="26" font-size="16" text-anchor="middle" font-family="Arial" font-weight="bold" fill="#0b1f5c">MA</text></svg>');
+}
+
+/* ===== Navigasi ===== */
+function go(v,anchor){
+  ['home','daftar','admin'].forEach(x=>$('#v-'+x).classList.toggle('hide',x!==v));
+  document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  if(v==='admin')renderAdmin();
+  if(anchor)setTimeout(()=>$('#'+anchor).scrollIntoView({behavior:'smooth'}),50);else scrollTo(0,0);
+}
+
+/* ===== Admin ===== */
+let tab='siswa';
+function renderAdmin(){
+  const r=$('#adminRoot');
+  if(!authed){
+    r.innerHTML=`<div class="card" style="max-width:380px;margin:30px auto"><h3>Login Admin</h3>
+    <label>Username<input id="lu" autocomplete="username"></label><br><label>Password<input id="lp" type="password" autocomplete="current-password"></label>
+    <div class="row" style="margin-top:16px"><button class="btn" onclick="login()">Masuk</button></div>
+    <p style="font-size:12px;color:#64748b;margin-top:12px">Akun awal: admin / admin123 — segera ganti di menu Akun.</p></div>`;
+    $('#lp').onkeydown=e=>{if(e.key==='Enter')login()};return;
+  }
+  const T=[['siswa','Data Siswa'],['galeri','Foto & Logo'],['info','Persyaratan & Biaya'],['akun','Akun Admin']];
+  r.innerHTML=`<div class="tabs">${T.map(([k,l])=>`<button class="${tab===k?'on':''}" onclick="tab='${k}';renderAdmin()">${l}</button>`).join('')}<button class="btn red sm" style="margin-left:auto" onclick="authed=false;renderAdmin()">Keluar</button></div><div id="tabBody"></div>`;
+  ({siswa:tSiswa,galeri:tGaleri,info:tInfo,akun:tAkun})[tab]();
+}
+async function login(){
+  if($('#lu').value.trim()===S.user&&await sha($('#lp').value)===S.pass){authed=true;renderAdmin()}else toast('Username atau password salah');
+}
+function tSiswa(q=''){
+  const L=STU.filter(s=>(s.nama+s.noreg+s.nisn+s.asal).toLowerCase().includes(q.toLowerCase()));
+  $('#tabBody').innerHTML=`<div class="card"><h3>Data Pendaftar (${STU.length})</h3>
+  <div class="row" style="margin-bottom:14px"><input id="sq" placeholder="Cari nama / no. daftar / NISN" style="max-width:260px;margin:0" value="${esc(q)}" oninput="tSiswa(this.value);const e=$('#sq');e.focus();e.setSelectionRange(99,99)">
+  <button class="btn sm" onclick="exportXLSX()">⬇ Excel</button><button class="btn sm" onclick="exportDOC()">⬇ Word</button><button class="btn sm" onclick="exportPDF()">⬇ PDF</button></div>
+  <div class="tw"><table><tr><th>No</th><th>No. Daftar</th><th>Nama</th><th>NISN</th><th>JK</th><th>Asal Sekolah</th><th>HP</th><th>Tgl Daftar</th><th>Aksi</th></tr>
+  ${L.map((s,i)=>`<tr><td>${i+1}</td><td>${s.noreg}</td><td>${esc(s.nama)}</td><td>${esc(s.nisn)}</td><td>${esc(s.jk)}</td><td>${esc(s.asal)}</td><td>${esc(s.hp)}</td><td>${esc(s.tgl)}</td>
+  <td><button class="btn sm" onclick="buktiPDF(STU.find(x=>x.noreg==='${s.noreg}'))">Bukti</button> <button class="btn red sm" onclick="delSiswa('${s.noreg}')">Hapus</button></td></tr>`).join('')||'<tr><td colspan="9">Belum ada data pendaftar.</td></tr>'}</table></div></div>`;
+}
+async function delSiswa(n){if(!confirm('Hapus data '+n+'?'))return;STU=STU.filter(s=>s.noreg!==n);await DB.set('stu',STU);tSiswa()}
+function readImg(file,max=1400){return new Promise(ok=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.78))};im.src=r.result};r.readAsDataURL(file)})}
+function tGaleri(){
+  $('#tabBody').innerHTML=`<div class="card"><h3>Logo Madrasah</h3><div class="row"><img src="${S.logo||''}" style="height:60px" class="${S.logo?'':'hide'}" alt=""><input type="file" id="lg" accept="image/*" style="max-width:280px"><button class="btn sm" onclick="upLogo()">Simpan Logo</button></div></div>
+  <div class="card"><h3>Foto Slide (Kegiatan &amp; Prestasi Siswa)</h3>
+  <div class="row"><input type="file" id="gf" accept="image/*" multiple style="max-width:280px"><input id="gc" placeholder="Keterangan foto (opsional)" style="max-width:280px"><button class="btn sm" onclick="upGal()">Upload</button></div>
+  <div class="thumbs">${GAL.map(g=>`<div><img src="${g.src}" alt=""><p>${esc(g.cap)}</p><button class="btn red sm" onclick="delGal('${g.id}')">Hapus</button></div>`).join('')||'<p>Belum ada foto.</p>'}</div></div>`;
+}
+async function upLogo(){const f=$('#lg').files[0];if(!f)return toast('Pilih file logo');S.logo=await readImg(f,400);await DB.set('settings',S);renderInfo();tGaleri();toast('Logo disimpan')}
+async function upGal(){const fs=[...$('#gf').files];if(!fs.length)return toast('Pilih foto');
+  for(const f of fs)GAL.push({id:Date.now()+Math.random().toString(36).slice(2,6),src:await readImg(f),cap:$('#gc').value});
+  await DB.set('gal',GAL);renderSlides();tGaleri();toast('Foto diupload')}
+async function delGal(id){GAL=GAL.filter(g=>g.id!==id);await DB.set('gal',GAL);renderSlides();tGaleri()}
+function tInfo(){
+  $('#tabBody').innerHTML=`<div class="card"><h3>Persyaratan &amp; Biaya</h3><p style="font-size:13px;margin-bottom:10px">Tulis satu poin per baris.</p>
+  <label>Persyaratan<textarea id="ts" rows="8">${esc(S.syarat)}</textarea></label><br><label>Biaya-biaya<textarea id="tb" rows="8">${esc(S.biaya)}</textarea></label>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="saveInfo()">Simpan</button></div></div>`;
+}
+async function saveInfo(){S.syarat=$('#ts').value;S.biaya=$('#tb').value;await DB.set('settings',S);renderInfo();toast('Tersimpan')}
+function tAkun(){
+  $('#tabBody').innerHTML=`<div class="card" style="max-width:420px"><h3>Ubah Username &amp; Password</h3>
+  <label>Username baru<input id="nu" value="${esc(S.user)}"></label><br><label>Password baru (kosongkan bila tidak diganti)<input id="np" type="password" autocomplete="new-password"></label><br>
+  <label>Password lama (wajib)<input id="op" type="password" autocomplete="current-password"></label>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="saveAkun()">Simpan Akun</button></div></div>`;
+}
+async function saveAkun(){
+  if(await sha($('#op').value)!==S.pass)return toast('Password lama salah');
+  const u=$('#nu').value.trim(),p=$('#np').value;
+  if(!u)return toast('Username tidak boleh kosong');if(p&&p.length<6)return toast('Password minimal 6 karakter');
+  S.user=u;if(p)S.pass=await sha(p);await DB.set('settings',S);toast('Akun diperbarui');tAkun();
+}
+
+/* ===== Init ===== */
+(async()=>{
+  await DB.open();
+  S=await DB.get('settings',null);
+  if(!S){S={user:'admin',pass:await sha('admin123'),logo:'',counter:0,
+    syarat:'Lulusan SD/MI atau sederajat\nFotokopi Ijazah/SKL (2 lembar)\nFotokopi Kartu Keluarga (2 lembar)\nFotokopi Akta Kelahiran (2 lembar)\nPas foto 3x4 berwarna (4 lembar)\nFotokopi KIP/PKH (jika ada)\nMengisi formulir pendaftaran online',
+    biaya:'Biaya pendaftaran: Rp 100.000\nUang gedung: Rp 1.500.000\nSeragam: Rp 800.000\nSPP bulanan: Rp 150.000\n(Admin dapat mengubah rincian ini)'};
+    await DB.set('settings',S)}
+  GAL=await DB.get('gal',[]);STU=await DB.get('stu',[]);
+  buildForm();renderInfo();renderSlides();go('home');
+})();
+</script>
+</body>
+</html>
